@@ -2,6 +2,12 @@
 
 Orchestrate multi-LLM debates across ChatGPT, Gemini, and Claude. Compare perspectives on the same question, cross-examine models against each other's responses, and let them rank contributions.
 
+## Screenshots
+
+| Debate | Ranking |
+|--------|---------|
+| ![Debate](docs/screenshot-debate.png) | ![Ranking](docs/screenshot-ranking.png) |
+
 ## Features
 
 - **Multi-Model Debate** — Send the same question to multiple AI models simultaneously and compare their responses side-by-side.
