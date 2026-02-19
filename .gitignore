@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# Local dev tool configs
+.claude/
+.mcp.json
+.playwright-mcp/
+
+# Dev specs
+openspec/
