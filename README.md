@@ -4,9 +4,13 @@ Orchestrate multi-LLM debates across ChatGPT, Gemini, and Claude. Compare perspe
 
 ## Screenshots
 
-| Debate | Ranking |
-|--------|---------|
-| ![Debate](docs/screenshot-debate.png) | ![Ranking](docs/screenshot-ranking.png) |
+| Debate | Cross-Debate | Ranking |
+|--------|-------------|---------|
+| ![Debate](docs/screenshot-debate.png) | ![Cross-Debate](docs/screenshot-cross-debate.png) | ![Ranking](docs/screenshot-ranking.png) |
+
+| Conclusion | Settings |
+|------------|----------|
+| ![Conclusion](docs/screenshot-conclusion.png) | ![Settings](docs/screenshot-settings.png) |
 
 ## Features
 
