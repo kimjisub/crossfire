@@ -100,7 +100,7 @@ function buildCrossDebatePrompt(
     })
     .join('\n\n');
 
-  return `다른 참여자들의 의견:\n\n${otherResponses}\n\n위 의견들에 대해 당신의 견해를 밝혀주세요. 더 이상 추가할 의견이 없으면 "${configStore.config.passKeyword}"를 출력하세요.`;
+  return `Other participants' opinions:\n\n${otherResponses}\n\nPlease share your perspective on the above opinions. If you have nothing more to add, output "${configStore.config.passKeyword}".`;
 }
 
 function extractJson(text: string): string | null {
@@ -268,7 +268,7 @@ export const useDebateStore = create<DebateState>((set, get) => ({
     const configStore = useConfigStore.getState();
     const modelIds = Array.from(selectedModels);
 
-    // 종합 점수 계산으로 1등 모델 결정
+    // Determine top model by aggregated scores
     const scores = new Map<string, number>();
     const nameToId = new Map<string, string>();
     for (const m of configStore.config.models) {
@@ -303,7 +303,7 @@ export const useDebateStore = create<DebateState>((set, get) => ({
       if (score > topScore) { topScore = score; topModelId = id; }
     }
 
-    const prompt = '지금까지의 토론을 종합하여, 원래 질문에 대한 최종 결론을 작성해주세요. 모든 참여자의 의견을 고려하여 균형 잡힌 결론을 내려주세요.';
+    const prompt = 'Summarize the entire debate and write a final conclusion for the original question. Consider all participants\' opinions and provide a balanced conclusion.';
 
     set((state) => ({
       turns: [...state.turns, { type: 'conclusion' as TurnType, responses: {} }],
@@ -439,7 +439,7 @@ export const useDebateStore = create<DebateState>((set, get) => ({
     const { selectedModels } = get();
     const modelIds = Array.from(selectedModels);
 
-    // 상태 초기화
+    // Reset state
     set({
       question: '',
       turns: [],
@@ -453,7 +453,7 @@ export const useDebateStore = create<DebateState>((set, get) => ({
       conclusion: null,
     });
 
-    // background에 전체 리셋 요청
+    // Request full reset from background
     const message: Message = {
       type: 'RESET_ALL',
       payload: { modelIds },

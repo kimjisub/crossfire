@@ -1,21 +1,20 @@
-import { useEffect, useRef } from 'react';
 import Markdown from 'react-markdown';
 import { useDebateStore } from '../store/useDebateStore';
 import { useConfigStore } from '../store/useConfigStore';
 import type { ModelStreamStatus } from '../../shared/messages';
 
 const STATUS_CFG: Record<ModelStreamStatus, { label: string; color: string; animate: boolean }> = {
-  idle: { label: '대기', color: '#6e6e82', animate: false },
-  thinking: { label: '생각 중', color: '#a78bfa', animate: true },
-  streaming: { label: '응답 중', color: '#f97316', animate: true },
-  complete: { label: '완료', color: '#34d399', animate: false },
-  error: { label: '오류', color: '#f87171', animate: false },
+  idle: { label: 'Idle', color: '#6e6e82', animate: false },
+  thinking: { label: 'Thinking', color: '#a78bfa', animate: true },
+  streaming: { label: 'Streaming', color: '#f97316', animate: true },
+  complete: { label: 'Done', color: '#34d399', animate: false },
+  error: { label: 'Error', color: '#f87171', animate: false },
 };
 
 const TURN_BADGE: Record<string, { label: string; cls: string }> = {
-  'cross-debate': { label: '교차 토론', cls: 'text-purple bg-purple-dim' },
-  'ranking': { label: '순위 평가', cls: 'text-amber bg-amber-dim' },
-  'conclusion': { label: '최종 결론', cls: 'text-sky bg-sky/10' },
+  'cross-debate': { label: 'Cross-Debate', cls: 'text-purple bg-purple-dim' },
+  'ranking': { label: 'Ranking', cls: 'text-amber bg-amber-dim' },
+  'conclusion': { label: 'Conclusion', cls: 'text-sky bg-sky/10' },
 };
 
 function ModelTabs({
@@ -76,12 +75,7 @@ function ModelTabs({
 export function ResultView() {
   const { turns, status, error, selectedModels, activeTabs, setActiveTab, modelStatus } =
     useDebateStore();
-  const bottomRef = useRef<HTMLDivElement>(null);
   const modelIds = Array.from(selectedModels);
-
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [turns, activeTabs]);
 
   if (turns.length === 0) return null;
 
@@ -136,7 +130,7 @@ export function ResultView() {
                     <Markdown>{activeResponse}</Markdown>
                   ) : (
                     <span className="text-txt-muted text-xs animate-pulse inline-block">
-                      응답 대기 중...
+                      Waiting for response...
                     </span>
                   )}
                 </div>
@@ -152,7 +146,6 @@ export function ResultView() {
         </div>
       )}
 
-      <div ref={bottomRef} />
     </div>
   );
 }

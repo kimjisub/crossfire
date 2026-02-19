@@ -70,14 +70,14 @@ export function QueryInput() {
         value={question}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        placeholder={hasTurns ? '추가 질문...' : '토론 주제를 입력하세요...'}
+        placeholder={hasTurns ? 'Follow-up question...' : 'Enter a debate topic...'}
         disabled={isLoading}
         rows={2}
         className="w-full resize-none px-3.5 pt-3 pb-2 text-[13px] bg-transparent text-txt outline-none leading-relaxed placeholder:text-txt-muted"
       />
 
       <div className="flex items-center justify-between px-2.5 pb-2">
-        {/* 좌측: 수동/자동 토글 */}
+        {/* Left: manual/auto toggle */}
         <div className="flex items-center rounded-lg bg-base p-0.5 gap-0.5">
           {(['manual', 'auto'] as const).map((mode) => {
             const active = debateMode === mode;
@@ -91,20 +91,20 @@ export function QueryInput() {
                   ${isLoading ? 'cursor-not-allowed' : ''}
                 `}
               >
-                {mode === 'manual' ? '수동' : '자동'}
+                {mode === 'manual' ? 'Manual' : 'Auto'}
               </button>
             );
           })}
         </div>
 
-        {/* 우측: 액션 버튼들 */}
+        {/* Right: action buttons */}
         <div className="flex items-center gap-1.5">
           {isLoading ? (
             <button
               onClick={cancelRound}
               className="px-3 py-1.5 text-[11px] font-semibold rounded-lg text-err bg-err/10 border border-err/20 cursor-pointer transition-all"
             >
-              중지
+              Stop
             </button>
           ) : showActions ? (
             <>
@@ -113,7 +113,7 @@ export function QueryInput() {
                   onClick={startCrossDebate}
                   className="px-3 py-1.5 text-[11px] font-semibold rounded-lg border-none bg-purple-dim text-purple cursor-pointer transition-all"
                 >
-                  교차 토론
+                  Cross
                 </button>
               )}
               {canRank && (
@@ -121,7 +121,7 @@ export function QueryInput() {
                   onClick={startRankingRound}
                   className="px-3 py-1.5 text-[11px] font-semibold rounded-lg border-none bg-amber-dim text-amber cursor-pointer transition-all"
                 >
-                  순위 평가
+                  Rank
                 </button>
               )}
             </>

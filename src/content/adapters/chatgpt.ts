@@ -24,7 +24,7 @@ const STABILIZE_DELAY = 2_000;
 
 export class ChatGPTAdapter implements AIAdapter {
   async injectPrompt(text: string): Promise<void> {
-    const editor = await findElement(SELECTORS.promptTextarea, 'ChatGPT 입력 필드');
+    const editor = await findElement(SELECTORS.promptTextarea, 'ChatGPT input field');
     (editor as HTMLElement).focus();
     const clipboardData = new DataTransfer();
     clipboardData.setData('text/plain', text);
@@ -35,7 +35,7 @@ export class ChatGPTAdapter implements AIAdapter {
 
   async submit(): Promise<void> {
     await new Promise((r) => setTimeout(r, 100));
-    const button = await findElement(SELECTORS.sendButton, 'ChatGPT 전송 버튼');
+    const button = await findElement(SELECTORS.sendButton, 'ChatGPT send button');
     (button as HTMLButtonElement).click();
   }
 
@@ -48,13 +48,13 @@ export class ChatGPTAdapter implements AIAdapter {
       const timeoutTimer = setTimeout(() => {
         observer.disconnect();
         if (stabilizeTimer) clearTimeout(stabilizeTimer);
-        reject(new Error('ChatGPT 응답 시간이 초과되었습니다'));
+        reject(new Error('ChatGPT response timed out'));
       }, timeout);
 
       const tryStabilize = () => {
         if (stabilizeTimer) clearTimeout(stabilizeTimer);
         stabilizeTimer = setTimeout(() => {
-          // stop 버튼이 아직 있으면 스트리밍 중이므로 대기
+          // Still streaming if stop button is present
           if (this.isStreaming()) return;
           observer.disconnect();
           clearTimeout(timeoutTimer);

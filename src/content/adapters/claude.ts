@@ -18,7 +18,7 @@ const DEFAULT_TIMEOUT = 120_000;
 
 export class ClaudeAdapter implements AIAdapter {
   async injectPrompt(text: string): Promise<void> {
-    const editor = await findElement(SELECTORS.proseMirrorEditor, 'Claude 입력 필드');
+    const editor = await findElement(SELECTORS.proseMirrorEditor, 'Claude input field');
     editor.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
     (editor as HTMLElement).focus();
 
@@ -30,7 +30,7 @@ export class ClaudeAdapter implements AIAdapter {
   }
 
   async submit(): Promise<void> {
-    const button = await findElement(SELECTORS.sendButton, 'Claude 전송 버튼');
+    const button = await findElement(SELECTORS.sendButton, 'Claude send button');
     (button as HTMLButtonElement).click();
   }
 
@@ -40,7 +40,7 @@ export class ClaudeAdapter implements AIAdapter {
 
       const timeoutTimer = setTimeout(() => {
         observer.disconnect();
-        reject(new Error('Claude 응답 시간이 초과되었습니다'));
+        reject(new Error('Claude response timed out'));
       }, timeout);
 
       const observer = new MutationObserver(() => {
@@ -77,9 +77,9 @@ export class ClaudeAdapter implements AIAdapter {
 
     const lastElement = elements[elements.length - 1];
 
-    // Claude의 응답 DOM은 grid 2행 구조:
-    // row-start-1 = thinking (extended thinking 내용)
-    // row-start-2 = 실제 응답 (standard-markdown)
+    // Claude response DOM: 2-row grid
+    // row-start-1 = thinking (extended thinking content)
+    // row-start-2 = actual response (standard-markdown)
     const contentRow = lastElement.querySelector('.row-start-2');
     if (contentRow) {
       return contentRow.textContent?.trim() ?? '';

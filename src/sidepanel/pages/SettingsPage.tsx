@@ -26,7 +26,7 @@ export function SettingsPage({ onBack }: SettingsPageProps) {
         >
           &larr;
         </button>
-        <h1 className="text-[15px] font-bold text-txt tracking-tight">설정</h1>
+        <h1 className="text-[15px] font-bold text-txt tracking-tight">Settings</h1>
       </header>
 
       <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-5">

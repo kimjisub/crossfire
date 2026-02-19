@@ -67,7 +67,7 @@ export function RankingView() {
     return (
       <div className="px-4 pb-2.5">
         <div className="bg-amber-dim border border-amber/20 rounded-xl px-3.5 py-3 text-xs text-amber">
-          순위 데이터를 파싱하지 못했습니다. 결과 탭에서 원문을 확인하세요.
+          Could not parse ranking data. Check the raw response in the Results tab.
         </div>
       </div>
     );
@@ -80,7 +80,7 @@ export function RankingView() {
       <div className="bg-surface rounded-xl border border-border overflow-hidden">
         <div className="px-3.5 py-2.5 text-[13px] font-bold text-amber border-b border-border flex items-center gap-2 tracking-tight">
           <span className="text-base">{'\u{1F3C6}'}</span>
-          종합 순위
+          Overall Ranking
         </div>
 
         <div className="p-3 flex flex-col gap-1.5">
@@ -124,7 +124,7 @@ export function RankingView() {
                     {agg.details.map((d, i) => (
                       <div key={i} className="text-[11px] text-txt-muted leading-relaxed">
                         <span className="font-semibold text-txt-secondary">{d.rankedBy}</span>
-                        {' '}{d.rank}위
+                        {' '}#{d.rank}
                         {d.reason && <span> &mdash; {d.reason}</span>}
                       </div>
                     ))}

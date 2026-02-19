@@ -31,7 +31,7 @@ export function ModelSelector() {
   if (config.models.length === 0) {
     return (
       <div className="text-xs text-txt-muted py-3 text-center">
-        설정에서 모델을 추가해주세요.
+        Add models in Settings to get started.
       </div>
     );
   }

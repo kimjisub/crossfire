@@ -22,7 +22,7 @@ export function waitForElement(
     const timer = setTimeout(() => {
       observer.disconnect();
       const label = description ?? selector;
-      reject(new Error(`${label}을(를) 찾을 수 없습니다 (${Math.round(timeout / 1000)}s timeout)`));
+      reject(new Error(`${label} not found (${Math.round(timeout / 1000)}s timeout)`));
     }, timeout);
 
     observer.observe(document.body, { childList: true, subtree: true });
@@ -47,5 +47,5 @@ export async function findElement(
     }
   }
 
-  throw new Error(`${description}을(를) 찾을 수 없습니다`);
+  throw new Error(`${description} not found`);
 }

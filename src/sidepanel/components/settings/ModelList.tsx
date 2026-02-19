@@ -24,20 +24,20 @@ export function ModelList({ models, onAdd, onUpdate, onDelete }: ModelListProps)
   return (
     <div>
       <div className="flex justify-between items-center mb-3">
-        <span className="text-[15px] font-bold text-txt tracking-tight">모델 목록</span>
+        <span className="text-[15px] font-bold text-txt tracking-tight">Models</span>
         {!showEditor && (
           <button
             onClick={() => { setEditingModel(null); setShowEditor(true); }}
             className="px-3 py-1.5 text-xs font-semibold border border-fire/30 rounded-lg bg-fire-dim text-fire cursor-pointer transition-all"
           >
-            + 추가
+            + Add
           </button>
         )}
       </div>
 
       {models.length === 0 && !showEditor && (
         <div className="text-[13px] text-txt-muted py-6 text-center bg-surface rounded-xl border border-dashed border-border-strong">
-          등록된 모델이 없습니다.
+          No models registered.
         </div>
       )}
 
@@ -63,13 +63,13 @@ export function ModelList({ models, onAdd, onUpdate, onDelete }: ModelListProps)
               onClick={() => { setEditingModel(model); setShowEditor(true); }}
               className="px-2.5 py-1 text-[11px] font-medium border border-border-strong rounded-md bg-elevated text-txt-secondary cursor-pointer"
             >
-              수정
+              Edit
             </button>
             <button
               onClick={() => onDelete(model.id)}
               className="px-2.5 py-1 text-[11px] font-medium border border-err/25 rounded-md bg-err/5 text-err cursor-pointer"
             >
-              삭제
+              Delete
             </button>
           </div>
         ))}

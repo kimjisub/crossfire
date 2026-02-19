@@ -32,13 +32,13 @@ export function ModelEditor({ model, onSave, onCancel }: ModelEditorProps) {
     <div className="border border-border rounded-xl p-3.5 flex flex-col gap-3 bg-surface">
       <div>
         <label className="text-[11px] font-semibold text-txt-muted block mb-1.5 uppercase tracking-widest">
-          모델 이름
+          Model Name
         </label>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="예: 보수적 분석가"
+          placeholder="e.g. Conservative Analyst"
           className={inputCls}
         />
       </div>
@@ -71,7 +71,7 @@ export function ModelEditor({ model, onSave, onCancel }: ModelEditorProps) {
 
       <div>
         <label className="text-[11px] font-semibold text-txt-muted block mb-1.5 uppercase tracking-widest">
-          색상
+          Color
         </label>
         <div className="flex items-center gap-2.5">
           <input
@@ -86,12 +86,12 @@ export function ModelEditor({ model, onSave, onCancel }: ModelEditorProps) {
 
       <div>
         <label className="text-[11px] font-semibold text-txt-muted block mb-1.5 uppercase tracking-widest">
-          시스템 프롬프트
+          System Prompt
         </label>
         <textarea
           value={systemPrompt}
           onChange={(e) => setSystemPrompt(e.target.value)}
-          placeholder="이 모델의 역할이나 관점을 설명하세요..."
+          placeholder="Describe this model's role or perspective..."
           rows={3}
           className={`${inputCls} resize-y leading-relaxed`}
         />
@@ -102,7 +102,7 @@ export function ModelEditor({ model, onSave, onCancel }: ModelEditorProps) {
           onClick={onCancel}
           className="px-4 py-2 text-xs font-medium border border-border-strong rounded-lg bg-elevated text-txt-secondary cursor-pointer"
         >
-          취소
+          Cancel
         </button>
         <button
           onClick={handleSubmit}
@@ -111,7 +111,7 @@ export function ModelEditor({ model, onSave, onCancel }: ModelEditorProps) {
             ${name.trim() ? 'bg-fire text-white cursor-pointer' : 'bg-overlay text-txt-muted cursor-not-allowed'}
           `}
         >
-          {model ? '수정' : '추가'}
+          {model ? 'Save' : 'Add'}
         </button>
       </div>
     </div>

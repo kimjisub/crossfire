@@ -57,7 +57,7 @@ function waitForTabLoad(tabId: number): Promise<void> {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => {
       chrome.tabs.onUpdated.removeListener(listener);
-      reject(new Error('탭 로드 시간이 초과되었습니다 (30s)'));
+      reject(new Error('Tab load timed out (30s)'));
     }, 30_000);
 
     const listener = (
@@ -141,7 +141,7 @@ async function handleCheckConnection(modelIds: string[]): Promise<void> {
 }
 
 async function handleResetAll(modelIds: string[]): Promise<void> {
-  // 모든 할당된 탭 닫기
+  // Close all assigned tabs
   const closePromises: Promise<void>[] = [];
   for (const [, tabId] of activeTabMap) {
     closePromises.push(chrome.tabs.remove(tabId).catch(() => {}));
@@ -149,7 +149,7 @@ async function handleResetAll(modelIds: string[]): Promise<void> {
   await Promise.all(closePromises);
   activeTabMap.clear();
 
-  // 선택된 모델들에 대해 새 탭 열기
+  // Open new tabs for selected models
   for (const modelId of modelIds) {
     try {
       const modelConfig = await getModelConfig(modelId);
@@ -170,7 +170,7 @@ async function handleResetAll(modelIds: string[]): Promise<void> {
       };
       await chrome.tabs.sendMessage(tabId, contextMsg);
     } catch {
-      // 개별 모델 실패 시 계속 진행
+      // Continue on individual model failure
     }
   }
 

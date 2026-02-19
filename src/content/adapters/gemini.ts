@@ -20,14 +20,14 @@ const DEFAULT_TIMEOUT = 120_000;
 
 export class GeminiAdapter implements AIAdapter {
   async injectPrompt(text: string): Promise<void> {
-    const editor = await findElement(SELECTORS.promptEditor, 'Gemini 입력 필드');
+    const editor = await findElement(SELECTORS.promptEditor, 'Gemini input field');
     (editor as HTMLElement).focus();
     document.execCommand('insertText', false, text);
   }
 
   async submit(): Promise<void> {
     await new Promise((r) => setTimeout(r, 100));
-    const button = await findElement(SELECTORS.sendButton, 'Gemini 전송 버튼');
+    const button = await findElement(SELECTORS.sendButton, 'Gemini send button');
     (button as HTMLButtonElement).click();
   }
 
@@ -37,7 +37,7 @@ export class GeminiAdapter implements AIAdapter {
 
       const timeoutTimer = setTimeout(() => {
         observer.disconnect();
-        reject(new Error('Gemini 응답 시간이 초과되었습니다'));
+        reject(new Error('Gemini response timed out'));
       }, timeout);
 
       const observer = new MutationObserver(() => {

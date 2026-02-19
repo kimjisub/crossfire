@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { ModelSelector } from '../components/ModelSelector';
 import { QueryInput } from '../components/QueryInput';
 import { ResultView } from '../components/ResultView';
@@ -11,9 +12,14 @@ interface DebatePageProps {
 
 export function DebatePage({ onOpenSettings }: DebatePageProps) {
   const { debatePhase, resetAll, turns } = useDebateStore();
+  const bottomRef = useRef<HTMLDivElement>(null);
   const showRanking = debatePhase === 'finished' || debatePhase === 'concluding' || debatePhase === 'concluded';
   const showConclusion = debatePhase === 'concluding' || debatePhase === 'concluded';
   const hasTurns = turns.length > 0;
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [turns, debatePhase]);
 
   return (
     <div className="flex flex-col h-screen bg-base">
@@ -22,7 +28,7 @@ export function DebatePage({ onOpenSettings }: DebatePageProps) {
           {hasTurns && (
             <button
               onClick={resetAll}
-              title="처음부터 다시"
+              title="Start over"
               className="w-8 h-8 flex items-center justify-center border border-border-strong rounded-lg bg-elevated text-txt-muted hover:border-err/40 hover:text-err transition-all cursor-pointer"
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -48,6 +54,7 @@ export function DebatePage({ onOpenSettings }: DebatePageProps) {
         <ResultView />
         {showRanking && <RankingView />}
         {showConclusion && <ConclusionView />}
+        <div ref={bottomRef} />
       </div>
 
       <footer className="px-3 pt-2 pb-3 bg-surface border-t border-border">

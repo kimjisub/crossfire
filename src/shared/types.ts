@@ -47,26 +47,26 @@ export interface CrossfireConfig {
   passKeyword: string;
 }
 
-export const DEFAULT_INITIAL_PROMPT_TEMPLATE = `당신은 "{{modelName}}" 역할입니다.
+export const DEFAULT_INITIAL_PROMPT_TEMPLATE = `You are playing the role of "{{modelName}}".
 {{systemPrompt}}
 
-이 토론에는 다음 참여자들이 있습니다: {{participantList}}
+The following participants are in this debate: {{participantList}}
 
-토론 규칙:
-- 더 이상 추가할 의견이 없으면 "{{passKeyword}}"를 출력하세요.
-- 다른 참여자의 의견에 대해 동의, 반박, 보완할 수 있습니다.
+Debate rules:
+- If you have nothing more to add, output "{{passKeyword}}".
+- You may agree with, rebut, or supplement other participants' opinions.
 
 ---
 
-질문: {{question}}`;
+Question: {{question}}`;
 
-export const DEFAULT_FINAL_RANKING_PROMPT_TEMPLATE = `토론이 종료되었습니다. 지금까지의 토론을 바탕으로, 각 참여자(자신 포함)의 기여도를 평가하여 순위를 매겨주세요.
+export const DEFAULT_FINAL_RANKING_PROMPT_TEMPLATE = `The debate has concluded. Based on the discussion so far, please evaluate and rank each participant's contributions (including yourself).
 
-다음 JSON 형식으로만 응답하세요:
+Respond only in the following JSON format:
 {
   "rankings": [
-    { "modelId": "모델ID", "rank": 1, "reason": "이유" },
-    { "modelId": "모델ID", "rank": 2, "reason": "이유" }
+    { "modelId": "modelID", "rank": 1, "reason": "reason" },
+    { "modelId": "modelID", "rank": 2, "reason": "reason" }
   ]
 }`;
 

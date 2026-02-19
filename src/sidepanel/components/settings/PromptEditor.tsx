@@ -19,11 +19,11 @@ export function PromptEditor({
 
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-[15px] font-bold text-txt m-0 tracking-tight">프롬프트 설정</h3>
+      <h3 className="text-[15px] font-bold text-txt m-0 tracking-tight">Prompt Settings</h3>
 
       <div>
         <label className="text-[11px] font-semibold text-txt-muted block mb-1.5 uppercase tracking-widest">
-          초기 프롬프트 템플릿
+          Initial Prompt Template
         </label>
         <div className="text-[11px] text-txt-muted mb-1.5 leading-snug">
           {'{{modelName}} {{participantList}} {{passKeyword}} {{systemPrompt}} {{question}}'}
@@ -38,7 +38,7 @@ export function PromptEditor({
 
       <div>
         <label className="text-[11px] font-semibold text-txt-muted block mb-1.5 uppercase tracking-widest">
-          최종 순위 프롬프트 템플릿
+          Final Ranking Prompt Template
         </label>
         <textarea
           value={finalRankingPromptTemplate}
@@ -50,10 +50,10 @@ export function PromptEditor({
 
       <div>
         <label className="text-[11px] font-semibold text-txt-muted block mb-1.5 uppercase tracking-widest">
-          PASS 키워드
+          Pass Keyword
         </label>
         <div className="text-[11px] text-txt-muted mb-1.5">
-          모델이 더 이상 의견이 없을 때 출력하는 키워드
+          Keyword models output when they have nothing more to add
         </div>
         <input
           type="text"

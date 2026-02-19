@@ -10,11 +10,11 @@ export function ConclusionView() {
         <div className="bg-surface rounded-xl border border-border overflow-hidden">
           <div className="px-3.5 py-2.5 text-[13px] font-bold text-sky border-b border-border flex items-center gap-2 tracking-tight">
             <span className="text-base">{'\u{1F4DD}'}</span>
-            최종 결론
+            Conclusion
           </div>
           <div className="py-8 px-4 text-center text-[13px] text-txt-muted">
             <span className="animate-pulse inline-block">
-              1등 모델이 최종 결론을 작성 중입니다...
+              Top-ranked model is writing the final conclusion...
             </span>
           </div>
         </div>
@@ -34,7 +34,7 @@ export function ConclusionView() {
 
         <div className="px-3.5 pt-3 pb-2.5 text-[13px] font-bold text-sky border-b border-border flex items-center gap-2 tracking-tight">
           <span className="text-base">{'\u{1F4DD}'}</span>
-          <span>최종 결론</span>
+          <span>Conclusion</span>
           <span
             className="text-[11px] font-medium rounded-md px-2 py-0.5 inline-flex items-center gap-1.5 ml-auto"
             style={{
